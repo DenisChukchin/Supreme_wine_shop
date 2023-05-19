@@ -1,3 +1,10 @@
-env/
+venv/
+.venv
 .vscode/
-
+.idea/
+__pycache__/
+Thumbs.db
+.replit
+index.html
+.xlsx
+.DS_Store
