@@ -1,6 +1,9 @@
 import datetime
 import pandas
 import collections
+import argparse
+import os
+from dotenv import load_dotenv
 
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -28,9 +31,9 @@ def get_correct_russian_year():
         return f"{winery_age} лет"
 
 
-def get_new_wine_card():
+def get_new_wine_card(path_to_file):
     excel_wine_card = pandas.read_excel(
-        'wine3.xlsx', sheet_name='Лист1', na_values='nan', keep_default_na=False
+        path_to_file, na_values='nan', keep_default_na=False
     )
     raw_wine_card = excel_wine_card.to_dict(orient='records')
     complete_wine_card = collections.defaultdict(list)
@@ -40,7 +43,24 @@ def get_new_wine_card():
     return dict(wine_card)
 
 
+def parse_args(default_file_path):
+    parser = argparse.ArgumentParser(
+        description="Используя шаблон,"
+                    " обновляем винную карту сайта на основе файла с таблицей"
+    )
+    parser.add_argument("-user_path", type=str,
+                        help="Укажите путь к файлу",
+                        default=default_file_path,
+                        metavar="Путь к файлу")
+    args = parser.parse_args()
+    return args.user_path
+
+
 def main():
+    load_dotenv()
+    default_file_path = os.getenv('FILE_PATH')
+    path_to_file = parse_args(default_file_path)
+
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml'])
@@ -48,7 +68,7 @@ def main():
     template = env.get_template('template.html')
     rendered_page = template.render(
         foundation_year=f'Уже {get_correct_russian_year()} с вами',
-        wine_card=get_new_wine_card()
+        wine_card=get_new_wine_card(path_to_file)
     )
 
     with open('index.html', 'w', encoding="utf8") as file:
