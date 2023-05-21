@@ -14,18 +14,18 @@ def get_winery_age():
 
 
 def get_correct_russian_year():
-    year = str(get_winery_age())
+    winery_age = str(get_winery_age())
     set_1 = ('2', '3', '4')
     set_2 = ('5', '6', '7', '8', '9', '12', '13',
              '14', '15', '16', '17', '18', '19')
-    if year.endswith('1') and not year.endswith('11'):
-        return f"{year} год"
-    if year.endswith(set_1) and not year.endswith(set_2[5:8]):
-        return f"{year} года"
-    if year.endswith(set_2) and not year.endswith('1' or set_2[5:7]):
-        return f"{year} лет"
-    if year.endswith('0') or year.endswith('11'):
-        return f"{year} лет"
+    if winery_age.endswith('1') and not winery_age.endswith('11'):
+        return f"{winery_age} год"
+    if winery_age.endswith(set_1) and not winery_age.endswith(set_2[5:8]):
+        return f"{winery_age} года"
+    if winery_age.endswith(set_2) and not winery_age.endswith('1' or set_2[5:7]):
+        return f"{winery_age} лет"
+    if winery_age.endswith('0') or winery_age.endswith('11'):
+        return f"{winery_age} лет"
 
 
 def get_new_wine_card():
