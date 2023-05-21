@@ -11,6 +11,7 @@ Install Python3 latest version. Install PyCharm IDE, if you need it.
 % pip install -r requirements.txt
 ```
 + You will need an .xlsx (excel) file with a table. The table must looks like the example below.
+<img width="877" alt="image" src="https://github.com/DenisChukchin/Supreme_wine_shop/assets/125466667/f2c41d6a-e973-4973-bbae-9f881d0d3a65">
 
 > For permanent set, create .env file inside project folder and add variable like this:
 ```python
