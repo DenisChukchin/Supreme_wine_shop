@@ -30,5 +30,6 @@ Also, you can use this command to choose another .xlsx file without setting  var
 ``` bash
 % python3 main.py -user_path "/Users/anton/documents/work/w.xlsx" 
 ```
+Go to the website: http://127.0.0.1:8000
 ## Project goals.
 *The program was designed by a student from online web development courses for educational purposes [Devman](https://dvmn.org).*
