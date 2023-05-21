@@ -6,14 +6,15 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
-def get_year():
+def get_winery_age():
     now = datetime.datetime.now()
-    age = now.year - 1920
-    return age
+    foundation_year = 1920
+    winery_age = now.year - foundation_year
+    return winery_age
 
 
 def get_correct_russian_year():
-    year = str(get_year())
+    year = str(get_winery_age())
     set_1 = ('2', '3', '4')
     set_2 = ('5', '6', '7', '8', '9', '12', '13',
              '14', '15', '16', '17', '18', '19')
